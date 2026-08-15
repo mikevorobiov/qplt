@@ -1,0 +1,107 @@
+# qplt "nature" style
+# A matplotlib style sheet aiming for the clean, boxed, small-multiple look
+# common in Nature Physics figures: sans-serif type, thin uniform lines,
+# a full axes box with inward ticks on all four sides, and a muted
+# colorblind-conscious color cycle. Designed to look correct at small
+# (single-column, ~89 mm) print sizes.
+
+# --- Fonts -------------------------------------------------------------
+font.family:        sans-serif
+font.sans-serif:    Liberation Sans, Arial, Helvetica, DejaVu Sans
+font.size:          12.0
+mathtext.fontset:   dejavusans
+
+axes.titlesize:     14
+axes.labelsize:     12
+xtick.labelsize:    11
+ytick.labelsize:    11
+legend.fontsize:    11
+figure.titlesize:   15
+
+# --- Figure --------------------------------------------------------------
+figure.figsize:      3.5, 2.625
+figure.dpi:          150
+figure.facecolor:    white
+figure.edgecolor:    white
+figure.autolayout:   False
+figure.constrained_layout.use: True
+
+# --- Axes ------------------------------------------------------------------
+axes.facecolor:      white
+axes.edgecolor:      2b2b2b
+axes.linewidth:       0.6
+axes.grid:            False
+axes.titlepad:         4.0
+axes.labelpad:          3.0
+axes.spines.left:       True
+axes.spines.bottom:     True
+axes.spines.top:        True
+axes.spines.right:      True
+axes.axisbelow:        True
+axes.unicode_minus:    True
+
+axes.prop_cycle: cycler('color', ['1F5C99', 'C1441C', '1B8A82', 'E8A63C', '6B4C9A', 'C24B7C', '7A9A3C', '55595C'])
+
+# --- Ticks -------------------------------------------------------------
+xtick.direction:      in
+ytick.direction:      in
+xtick.top:            True
+ytick.right:          True
+xtick.major.size:     3.0
+ytick.major.size:     3.0
+xtick.minor.size:     1.6
+ytick.minor.size:     1.6
+xtick.major.width:    0.6
+ytick.major.width:    0.6
+xtick.minor.width:    0.5
+ytick.minor.width:    0.5
+xtick.minor.visible:  True
+ytick.minor.visible:  True
+xtick.major.pad:      2.5
+ytick.major.pad:      2.5
+xtick.color:          2b2b2b
+ytick.color:          2b2b2b
+xtick.labelcolor:     black
+ytick.labelcolor:     black
+
+# --- Lines / markers -----------------------------------------------------
+lines.linewidth:       1.2
+lines.markersize:      4.0
+lines.markeredgewidth: 0.6
+lines.solid_capstyle:  round
+patch.linewidth:       0.6
+patch.edgecolor:       2b2b2b
+
+# --- Legend ----------------------------------------------------------------
+legend.frameon:        False
+legend.handlelength:   1.4
+legend.handletextpad:  0.5
+legend.labelspacing:   0.3
+legend.columnspacing:  1.0
+legend.borderaxespad:  0.4
+
+# --- Grid (off by default, styled for when opted in) ----------------------
+grid.color:    d9d9d9
+grid.linewidth: 0.5
+grid.linestyle: -
+
+# --- Saving ------------------------------------------------------------
+savefig.dpi:         600
+savefig.bbox:         tight
+savefig.pad_inches:   0.03
+savefig.facecolor:    white
+savefig.transparent:  False
+
+# Keep text as real, editable text (not paths) in vector output, and
+# embed the full font rather than subsetting to Type 3 bitmaps.
+pdf.fonttype:  42
+ps.fonttype:   42
+svg.fonttype:  none
+
+# --- Images / colormap -----------------------------------------------------
+image.cmap:    qplt:ice
+image.origin:  upper
+
+# --- Errorbars / scatter ---------------------------------------------------
+errorbar.capsize: 2.0
+scatter.edgecolors: black

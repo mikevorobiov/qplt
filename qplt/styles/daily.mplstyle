@@ -1,0 +1,133 @@
+# qplt "daily" style
+# A bigger, screen-first style for day-to-day exploratory plotting --
+# checking a run, sanity-checking a fit, looking at data while it's
+# still coming in -- as opposed to the "nature"/"nature-cm" styles,
+# which are tuned for small print figures. This is NOT a business
+# dashboard style: it keeps the conventions physicists actually use to
+# read data quickly -- a full boxed axes with inward ticks and minor
+# ticks (so you can read values off any edge, and see structure between
+# major gridlines), a faint dotted "graph paper" grid rather than a
+# filled dashboard grid, Computer Modern math (matplotlib's built-in
+# `cm` mathtext font, no LaTeX install required) so equations look like
+# the LaTeX everyone already reads, and a plain thin-border legend with
+# no rounded corners or drop shadow. It's just bigger and less fussy
+# than "nature", and pairs with qplt.daily_figure() /
+# qplt.sidebar_stats() for a sidebar of fit parameters or notes next
+# to the plot. Same color cycle and colormaps as the other styles.
+
+# --- Fonts -------------------------------------------------------------
+# Serif body text + Computer Modern math -- the look of a page of LaTeX
+# notes, not a sans-serif dashboard.
+font.family:        serif
+font.serif:         Liberation Serif, Times New Roman, Times, DejaVu Serif
+font.size:          14.0
+mathtext.fontset:   cm
+
+axes.titlesize:     17
+axes.labelsize:     15
+xtick.labelsize:    13
+ytick.labelsize:    13
+legend.fontsize:    13
+figure.titlesize:   19
+
+# --- Figure --------------------------------------------------------------
+# Bigger than the print-column presets in qplt.figsize -- this style
+# is meant to fill a notebook cell or a monitor, not a journal column.
+figure.figsize:      8.0, 5.2
+figure.dpi:          100
+figure.facecolor:    white
+figure.edgecolor:    white
+figure.autolayout:   False
+figure.constrained_layout.use: True
+
+# --- Axes ------------------------------------------------------------------
+# Full box, inward ticks -- read a value off any edge, the way you would
+# on graph paper, not just the bottom-left corner.
+axes.facecolor:      white
+axes.edgecolor:      1a1a1a
+axes.linewidth:       1.0
+axes.grid:            True
+axes.titlepad:         10.0
+axes.labelpad:          7.0
+axes.spines.left:       True
+axes.spines.bottom:     True
+axes.spines.top:        True
+axes.spines.right:      True
+axes.axisbelow:        True
+axes.unicode_minus:    True
+
+axes.prop_cycle: cycler('color', ['1F5C99', 'C1441C', '1B8A82', 'E8A63C', '6B4C9A', 'C24B7C', '7A9A3C', '55595C'])
+
+# --- Ticks -------------------------------------------------------------
+xtick.direction:      in
+ytick.direction:      in
+xtick.top:            True
+ytick.right:          True
+xtick.major.size:     5.5
+ytick.major.size:     5.5
+xtick.minor.size:     3.0
+ytick.minor.size:     3.0
+xtick.minor.visible:  True
+ytick.minor.visible:  True
+xtick.major.width:    1.0
+ytick.major.width:    1.0
+xtick.minor.width:    0.7
+ytick.minor.width:    0.7
+xtick.major.pad:      5.0
+ytick.major.pad:      5.0
+xtick.color:          1a1a1a
+ytick.color:          1a1a1a
+xtick.labelcolor:     black
+ytick.labelcolor:     black
+
+# --- Lines / markers -----------------------------------------------------
+lines.linewidth:       1.8
+lines.markersize:      6.0
+lines.markeredgewidth: 0.9
+lines.solid_capstyle:  round
+patch.linewidth:       0.9
+patch.edgecolor:       1a1a1a
+
+# --- Legend ----------------------------------------------------------------
+# Plain thin border, no rounded corners/shadow -- a data label, not a UI card.
+legend.frameon:        True
+legend.framealpha:     0.85
+legend.facecolor:      white
+legend.edgecolor:      888888
+legend.fancybox:       False
+legend.handlelength:   1.6
+legend.handletextpad:  0.6
+legend.labelspacing:   0.4
+legend.columnspacing:  1.2
+legend.borderaxespad:  0.6
+legend.borderpad:      0.5
+
+# --- Grid: faint dotted graph-paper lines, not a filled dashboard grid ----
+grid.color:    b0b0b0
+grid.linewidth: 0.5
+grid.linestyle: :
+grid.alpha:    0.6
+
+# --- Saving ------------------------------------------------------------
+# Lower than the "nature" style's 600 dpi -- this style targets screens
+# and notebook embeds, not print submission, so a smaller/faster file is
+# more useful than press-ready resolution.
+savefig.dpi:         150
+savefig.bbox:         tight
+savefig.pad_inches:   0.15
+savefig.facecolor:    white
+savefig.transparent:  False
+
+pdf.fonttype:  42
+ps.fonttype:   42
+svg.fonttype:  none
+
+# --- Images / colormap -----------------------------------------------------
+image.cmap:    qplt:ice
+image.origin:  upper
+
+# --- Errorbars / scatter ---------------------------------------------------
+# Physics data is often error-bar-heavy during daily analysis -- keep
+# caps visible.
+errorbar.capsize: 3.5
+scatter.edgecolors: black
