@@ -27,7 +27,6 @@ dev = ["pytest"]
 
 [tool.setuptools.packages.find]
 include = ["qplt*"]
-where = ["qplt"]
 
 [tool.setuptools.package-data]
 qplt = ["styles/*.mplstyle", "fontfiles/*.ttf", "fontfiles/*.txt"]
