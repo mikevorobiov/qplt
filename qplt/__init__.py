@@ -35,6 +35,7 @@ next to the plot for fit parameters or notes with :func:`daily_figure`:
 >>> ax.errorbar(x, y, yerr=yerr, fmt="o")
 >>> qplt.sidebar_stats(side, {"chi2/dof": 1.08, "T_c (K)": "92.3(4)"},
 ...     title="Fit")
+>>> qplt.stamp(fig)  # small provenance timestamp in the corner
 
 For a fit against data, :func:`residual_figure` gives you a main panel
 plus a shorter residuals panel below it, sharing the x-axis -- works
@@ -68,9 +69,10 @@ from .utils import (
     savefig,
     sidebar_stats,
     sidebar_text,
+    stamp,
 )
 
-__version__ = "0.7.0"
+__version__ = "0.8.0"
 __all__ = [
     "set_style",
     "style",
@@ -84,6 +86,7 @@ __all__ = [
     "residual_figure",
     "sidebar_text",
     "sidebar_stats",
+    "stamp",
     "colors",
     "fonts",
     "PALETTE",
