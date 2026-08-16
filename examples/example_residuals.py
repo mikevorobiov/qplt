@@ -8,6 +8,7 @@ to this script.
 
 from __future__ import annotations
 
+import datetime
 import os
 import sys
 
@@ -103,6 +104,10 @@ qplt.sidebar_stats(
     },
     title="Fit",
 )
+
+# provenance stamp -- only on the daily quick-look, not the publication
+# panel above.
+qplt.stamp(fig, when=datetime.datetime(2026, 8, 15, 14, 32))
 
 qplt.savefig(fig, os.path.join(os.path.dirname(__file__), "residuals_daily"))
 print("Wrote residuals_daily.png / .pdf")

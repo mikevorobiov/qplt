@@ -125,6 +125,93 @@ def label_panels(axes: Iterable, labels: Sequence[str] | None = None, **kwargs):
     return [panel_label(ax, lab, **kwargs) for ax, lab in zip(axes, labels)]
 
 
+def stamp(
+    fig,
+    when=None,
+    fmt: str = "%Y-%m-%d %H:%M",
+    loc: str = "lower right",
+    pad: float = 0.012,
+    fontsize: float = 8.0,
+    color: str = "#777777",
+    alpha: float = 0.85,
+    **text_kwargs,
+):
+    """Stamp a figure with a small, muted timestamp.
+
+    Meant for the ``"daily"`` style: exploratory plots get copied into
+    Slack, a lab notebook, a Notion page, wherever -- usually stripped
+    of filename and file-metadata the moment someone re-saves or
+    screenshots them. A stamp baked into the image is the only
+    provenance that survives that. It's a plain opt-in call, not
+    something :func:`daily_figure`/:func:`set_style` add on their own --
+    see the ``when`` note below for why.
+
+    Not intended for ``"nature"``/``"nature-cm"`` publication figures;
+    a journal wants the date in the manuscript text, not printed on
+    the plot.
+
+    Parameters
+    ----------
+    fig:
+        The figure to stamp.
+    when:
+        A :class:`datetime.datetime`, or ``None`` to use the current
+        local time. Deliberately not filled in automatically by any
+        other qplt function: pass the timestamp of the *run*/*data*
+        explicitly when you have it (e.g. from a data file's mtime, or
+        when the sweep started), so the stamp reflects when the
+        measurement happened rather than merely when the figure was
+        last re-rendered.
+    fmt:
+        ``strftime`` format for the stamp text.
+    loc:
+        One of ``"lower right"``, ``"lower left"``, ``"upper right"``,
+        ``"upper left"``.
+    pad:
+        Distance from the figure edge, in figure-fraction units.
+    fontsize, color, alpha:
+        Kept small/muted by default so the stamp reads as a quiet
+        margin note, not a watermark competing with the data.
+
+    Returns
+    -------
+    The :class:`~matplotlib.text.Text` artist created.
+
+    Examples
+    --------
+    >>> qplt.set_style("daily")
+    >>> fig, ax, side = qplt.daily_figure()
+    >>> ax.errorbar(x, y, yerr=yerr, fmt="o")
+    >>> qplt.stamp(fig)  # or qplt.stamp(fig, when=run_started_at)
+    """
+    import datetime as _datetime
+
+    positions = {
+        "lower right": (1 - pad, pad, "right", "bottom"),
+        "lower left": (pad, pad, "left", "bottom"),
+        "upper right": (1 - pad, 1 - pad, "right", "top"),
+        "upper left": (pad, 1 - pad, "left", "top"),
+    }
+    if loc not in positions:
+        raise ValueError(f"loc must be one of {sorted(positions)}, got {loc!r}")
+    x, y, ha, va = positions[loc]
+
+    when = when if when is not None else _datetime.datetime.now()
+
+    return fig.text(
+        x,
+        y,
+        when.strftime(fmt),
+        ha=ha,
+        va=va,
+        fontsize=fontsize,
+        color=color,
+        alpha=alpha,
+        family="monospace",
+        **text_kwargs,
+    )
+
+
 def daily_figure(
     figsize: tuple[float, float] | None = None,
     sidebar_width: float = 0.28,

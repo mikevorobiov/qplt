@@ -13,6 +13,7 @@ Writes daily_example.png / .pdf next to this script.
 
 from __future__ import annotations
 
+import datetime
 import os
 import sys
 
@@ -87,6 +88,11 @@ qplt.sidebar_text(
     title="Notes",
     y=0.45,
 )
+
+# small provenance stamp -- when this run happened, not when the PNG
+# happened to be (re-)rendered. Pass the sweep's own timestamp when you
+# have one; falls back to datetime.now() if you don't.
+qplt.stamp(fig, when=datetime.datetime(2026, 8, 15, 14, 32))
 
 out_base = os.path.join(os.path.dirname(__file__), "daily_example")
 paths = qplt.savefig(fig, out_base, formats=("png", "pdf"))
