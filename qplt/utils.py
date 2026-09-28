@@ -216,6 +216,7 @@ def daily_figure(
     figsize: tuple[float, float] | None = None,
     sidebar_width: float = 0.28,
     wspace: float = 0.06,
+    **kwargs
 ):
     """Create a figure laid out for the ``"daily"`` style: a main plot
     axes plus a blank, frameless sidebar axes to its right for notes,
@@ -256,7 +257,7 @@ def daily_figure(
         raise ValueError("sidebar_width must be between 0 and 1 (exclusive)")
 
     figsize = figsize if figsize is not None else plt.rcParams["figure.figsize"]
-    fig = plt.figure(figsize=figsize)
+    fig = plt.figure(figsize=figsize, **kwargs)
     gs = fig.add_gridspec(1, 2, width_ratios=[1 - sidebar_width, sidebar_width], wspace=wspace)
     ax = fig.add_subplot(gs[0, 0])
     side_ax = fig.add_subplot(gs[0, 1])
